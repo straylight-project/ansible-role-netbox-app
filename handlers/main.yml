@@ -1,0 +1,17 @@
+---
+- name: update netbox django
+  django_manage:
+    command: "{{ item }}"
+    app_path: /opt/netbox/netbox
+    virtualenv: /opt/netbox
+  listen: "update netbox"
+  with_items:
+    - migrate 
+    - collectstatic
+
+- name: restart supervisor
+  service:
+    name: supervisor
+    state: restarted
+  listen: "restart supervisor"
+
