@@ -19,50 +19,50 @@
     - virtualenv
     - supervisor
 
-- name: ensure /opt exists
+- name: "ensure {{ netbox_install_directory }} exists"
   file:
-    path: /opt
+    path: "{{ netbox_install_directory }}"
     state: directory
     mode: 0755
 
 - name: ensure netbox 2.3.4 source is present
   unarchive:
     src: https://github.com/digitalocean/netbox/archive/v2.3.4.tar.gz
-    dest: /opt
+    dest: "{{ netbox_install_directory }}"
     remote_src: yes
 
-- name: ensure netbox 2.3.4 is linked to /opt/netbox
+- name: "ensure netbox 2.3.4 is linked to {{ netbox_install_directory }}/netbox"
   file:
-    src: /opt/netbox-2.3.4
-    dest: /opt/netbox
+    src: "{{ netbox_install_directory }}/netbox-2.3.4"
+    dest: "{{ netbox_install_directory }}/netbox"
     state: link
   notify: "update netbox django"
 
 - name: ensure python dependancies are installed in virtualenv
   pip:
-    requirements: /opt/netbox/requirements.txt
-    virtualenv: /opt/netbox
+    requirements: "{{ netbox_install_directory }}/netbox/requirements.txt"
+    virtualenv: "{{ netbox_install_directory }}/netbox"
 
 - name: ensure configuration.py is present
   template:
     src: configuration.py.j2
-    dest: /opt/netbox/netbox/netbox/configuration.py
+    dest: "{{ netbox_install_directory }}/netbox/netbox/netbox/configuration.py"
   notify: "update netbox django"
 
 - name: ensure naplam is installed in virtualenv
   pip:
     name: napalm
-    virtualenv: /opt/netbox
+    virtualenv: "{{ netbox_install_directory }}/netbox"
 
 - name: ensure gunicorn is installed in virtualenv
   pip:
     name: gunicorn
-    virtualenv: /opt/netbox
+    virtualenv: "{{ netbox_install_directory }}/netbox"
 
 - name: ensure gunicorn config is present
   template:
     src: gunicorn_config.py.j2
-    dest: /opt/netbox/gunicorn_config.py
+    dest: "{{ netbox_install_directory }}/netbox/gunicorn_config.py"
   notify: "restart supervisor"
 
 - name: ensure supervisor config is present

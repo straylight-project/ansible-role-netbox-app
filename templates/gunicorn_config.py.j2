@@ -1,5 +1,5 @@
-command = '/opt/netbox/bin/gunicorn'
-pythonpath = '/opt/netbox/netbox'
+command = '{{ netbox_install_directory }}/netbox/bin/gunicorn'
+pythonpath = '{{ netbox_install_directory }}/netbox/netbox'
 bind = '127.0.0.1:8001'
 workers = 3
 user = 'www-data'

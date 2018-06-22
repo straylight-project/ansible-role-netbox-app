@@ -1,4 +1,4 @@
 [program:netbox]
-command = /opt/netbox/bin/gunicorn -c /opt/netbox/gunicorn_config.py netbox.wsgi
-directory = /opt/netbox/netbox/
+command = {{ netbox_install_directory }}/netbox/bin/gunicorn -c {{ netbox_install_directory }}/netbox/gunicorn_config.py netbox.wsgi
+directory = {{ netbox_install_directory }}/netbox/netbox/
 user = www-data
