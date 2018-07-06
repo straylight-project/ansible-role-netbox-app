@@ -82,7 +82,7 @@ EMAIL = {
 
 # Enforcement of unique IP space can be toggled on a per-VRF basis. To enforce unique IP space within the global table
 # (all prefixes and IP addresses not assigned to a VRF), set ENFORCE_GLOBAL_UNIQUE to True.
-ENFORCE_GLOBAL_UNIQUE = False
+ENFORCE_GLOBAL_UNIQUE = {{ netbox_enforce_global_unique | default('False') }}
 
 # Enable custom logging. Please see the Django documentation for detailed guidance on configuring custom logs:
 #   https://docs.djangoproject.com/en/1.11/topics/logging/
