@@ -1,4 +1,6 @@
 ---
+netbox_version: 2.3.4
+
 netbox_install_directory: /opt
 
 netbox_secret_key: CHANGEME

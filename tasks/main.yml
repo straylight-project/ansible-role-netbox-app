@@ -25,15 +25,15 @@
     state: directory
     mode: 0755
 
-- name: ensure netbox 2.3.4 source is present
+- name: "ensure netbox {{ netbox_version }} source is present"
   unarchive:
-    src: https://github.com/digitalocean/netbox/archive/v2.3.4.tar.gz
+    src: "https://github.com/digitalocean/netbox/archive/v{{ netbox_version }}.tar.gz"
     dest: "{{ netbox_install_directory }}"
     remote_src: yes
 
-- name: "ensure netbox 2.3.4 is linked to {{ netbox_install_directory }}/netbox"
+- name: "ensure netbox {{ netbox_version }} is linked to {{ netbox_install_directory }}/netbox"
   file:
-    src: "{{ netbox_install_directory }}/netbox-2.3.4"
+    src: "{{ netbox_install_directory }}/netbox-{{ netbox_version }}"
     dest: "{{ netbox_install_directory }}/netbox"
     state: link
   notify: "update netbox django"
