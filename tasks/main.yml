@@ -36,7 +36,7 @@
     src: "{{ netbox_install_directory }}/netbox-{{ netbox_version }}"
     dest: "{{ netbox_install_directory }}/netbox"
     state: link
-  notify: "update netbox django"
+  notify: "update netbox"
 
 - name: ensure python dependancies are installed in virtualenv
   pip:
@@ -47,7 +47,7 @@
   template:
     src: configuration.py.j2
     dest: "{{ netbox_install_directory }}/netbox/netbox/netbox/configuration.py"
-  notify: "update netbox django"
+  notify: "update netbox"
 
 - name: ensure naplam is installed in virtualenv
   pip:
