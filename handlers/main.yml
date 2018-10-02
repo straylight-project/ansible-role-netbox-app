@@ -16,4 +16,6 @@
   listen: "restart supervisor"
 
 - name: restart netbox
-  supervisorctl: name=netbox state=restarted
+  supervisorctl:
+    name: netbox 
+    state: restarted
