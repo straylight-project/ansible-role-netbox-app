@@ -1,4 +1,18 @@
 ---
+- name: backup netbox database (to /tmp/netbox.sql.gz)
+  postgresql_db:
+    name: "{{ netbox_database_name }}"
+    state: dump
+    target: "/tmp/netbox.sql.gz"
+  become_user: postgres
+  listen: "update netbox"
+
+# - name: "copy database backup file to {{ netbox_install_directory }}/netbox_backup_{{ '%Y-%m-%d_%H-%M-%S' | strftime }}.sql.gz"
+#   copy:
+#     src: /tmp/netbox.sql.gz
+#     dest: "{{ netbox_install_directory }}/netbox_backup_{{ '%Y-%m-%d_%H-%M-%S' | strftime }}.sql.gz"
+#   listen: "update netbox"
+
 - name: update netbox django
   django_manage:
     command: "{{ item }}"
