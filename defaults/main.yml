@@ -11,3 +11,5 @@ netbox_database_name: netbox
 netbox_database_user: netbox
 netbox_database_password: netbox
 netbox_database_host: localhost
+
+python_command: python3
