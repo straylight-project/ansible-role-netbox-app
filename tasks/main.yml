@@ -42,6 +42,7 @@
   pip:
     requirements: "{{ netbox_install_directory }}/netbox/requirements.txt"
     virtualenv: "{{ netbox_install_directory }}/netbox"
+    virtualenv_python: "{{ python_command }}"
 
 - name: ensure configuration.py is present
   template:
@@ -53,11 +54,13 @@
   pip:
     name: napalm
     virtualenv: "{{ netbox_install_directory }}/netbox"
+    virtualenv_python: "{{ python_command }}"
 
 - name: ensure gunicorn is installed in virtualenv
   pip:
     name: gunicorn
     virtualenv: "{{ netbox_install_directory }}/netbox"
+    virtualenv_python: "{{ python_command }}"
 
 - name: ensure gunicorn config is present
   template:
