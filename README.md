@@ -11,6 +11,7 @@ Role Variables
   - `netbox_database_user`: Username to connect to the database with
   - `netbox_database_password`: Password for the database user
   - `netbox_allowed_hosts`: ['localhost']
+  - python_command: specify the python executable for the virtualenv
 
 Example Playbook
 ----------------
