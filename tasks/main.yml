@@ -25,6 +25,20 @@
     state: directory
     mode: 0755
 
+- name: "ensure {{ netbox_media_root }} exists"
+  file:
+    path: "{{ netbox_media_root }}"
+    state: directory
+    mode: 0755
+  when: netbox_media_root is defined
+
+- name: "ensure {{ netbox_reports_root }} exists"
+  file:
+    path: "{{ netbox_reports_root }}"
+    state: directory
+    mode: 0755
+  when: netbox_reports_root is defined
+
 - name: "ensure netbox {{ netbox_version }} source is present"
   unarchive:
     src: "https://github.com/digitalocean/netbox/archive/v{{ netbox_version }}.tar.gz"
