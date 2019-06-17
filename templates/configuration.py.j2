@@ -102,7 +102,7 @@ MAX_PAGE_SIZE = 1000
 
 # The file path where uploaded media such as image attachments are stored. A trailing slash is not needed. Note that
 # the default value of this setting is derived from the installed location.
-# MEDIA_ROOT = '/opt/netbox/netbox/media'
+MEDIA_ROOT = '{{ netbox_media_root | default("/opt/netbox/netbox/media") }}'
 
 # Credentials that NetBox will uses to authenticate to devices when connecting via NAPALM.
 NAPALM_USERNAME = ''
@@ -124,10 +124,10 @@ PREFER_IPV4 = False
 
 # The file path where custom reports will be stored. A trailing slash is not needed. Note that the default value of
 # this setting is derived from the installed location.
-# REPORTS_ROOT = '/opt/netbox/netbox/reports'
+REPORTS_ROOT = '{{ netbox_reports_root | default ("/opt/netbox/netbox/reports") }}'
 
 # Time zone (default: UTC)
-TIME_ZONE = 'UTC'
+TIME_ZONE = '{{ netbox_timezone | default("UTC") }}'
 
 # Date/time formatting. See the following link for supported formats:
 # https://docs.djangoproject.com/en/dev/ref/templates/builtins/#date
